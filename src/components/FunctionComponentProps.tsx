@@ -25,7 +25,7 @@ const FunctionComponentProps: FC<IPROPS> = (props) => {
   };
   React.useEffect(() => {
     changeAge();
-    //eslint-disa
+    //eslint-disable-next-line
   }, []);
   return (
     <>

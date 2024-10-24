@@ -1,24 +1,27 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
+import IUSER from "../models/IUSER";
 
 interface ISTATE {
-  username: string;
-  password: string;
+  user: IUSER;
 }
 const initialForm: ISTATE = {
-  username: "",
-  password: "",
+  user: {
+    username: "",
+    password: "",
+  },
 };
 const Form = () => {
   const [state, setState] = useState<ISTATE>(initialForm);
   const [value, setValue] = useState<ISTATE>(initialForm);
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setState({ ...state, [name]: value });
+    setState({ ...state, user: { ...state.user, [name]: value } });
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setValue(state);
+    setState(initialForm);
   };
   return (
     <>
@@ -37,7 +40,7 @@ const Form = () => {
                   className="form-control"
                   placeholder="User Name"
                   name="username"
-                  value={state.username}
+                  value={state.user.username}
                   onChange={handleChange}
                 />
               </div>
@@ -51,7 +54,7 @@ const Form = () => {
                   className="form-control"
                   placeholder="password"
                   name="password"
-                  value={state.password}
+                  value={state.user.password}
                   onChange={handleChange}
                 />
               </div>
@@ -62,8 +65,8 @@ const Form = () => {
             </fieldset>
           </form>
           <div className="card mt-3 p-3">
-            <p>Name: {value.username}</p>
-            <p>Password: {value.password}</p>
+            <p>Name: {value.user.username}</p>
+            <p>Password: {value.user.password}</p>
           </div>
         </div>
       </div>

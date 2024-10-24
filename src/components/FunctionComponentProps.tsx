@@ -19,8 +19,13 @@ const data = {
 
 const FunctionComponentProps: FC<IPROPS> = (props) => {
   const [state, setState] = useState<ISTATE>(data);
-  React.useEffect(() => {
+
+  const changeAge = () => {
     setState({ ...state, age: 20 });
+  };
+  React.useEffect(() => {
+    changeAge();
+    //eslint-disa
   }, []);
   return (
     <>
